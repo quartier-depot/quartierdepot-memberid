@@ -13,7 +13,7 @@ The plugin allows users to generate and manage their membership ID, which is dis
 
 ## Features
 
-- Displays membership ID as a Code-128 2D barcode using JsBarcode
+- Displays membership ID as a Code-128 2D barcode using [JsBarcode](https://github.com/lindell/JsBarcode)
 - Generates unique membership IDs in the format `MXXXXXXXXXX` (where X is a random digit)
 - Allows users to delete their membership ID
 - Integrates with WooCommerce's "My Account" area
