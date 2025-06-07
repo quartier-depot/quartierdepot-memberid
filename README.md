@@ -29,12 +29,12 @@ The plugin allows users to generate and manage their membership ID, which is dis
 ## Installation and Required Configuration
 
 1. Install Plugin
-  - Download the latest release ZIP file from the [Releases page](https://github.com/quartier-depot/quartierdepot-memberid/releases)
-  - Go to WordPress admin → Plugins → Add New
-  - Click "Upload Plugin" and select the downloaded ZIP file
-  - Click "Install Now" and then "Activate"
-  - Activate the plugin through the 'Plugins' menu in WordPress
-3. Set up the required ACF field:
+   - Download the latest release ZIP file from the [Releases page](https://github.com/quartier-depot/quartierdepot-memberid/releases)
+   - Go to WordPress admin → Plugins → Add New
+   - Click "Upload Plugin" and select the downloaded ZIP file
+   - Click "Install Now" and then "Activate"
+   - Activate the plugin through the 'Plugins' menu in WordPress
+2. Set up the required ACF field:
    - Go to Custom Fields in WordPress admin
    - Create a new field group
    - Add a new field with these settings:
@@ -44,12 +44,12 @@ The plugin allows users to generate and manage their membership ID, which is dis
      - Location Rules: User Form is equal to All
      - Required: No
      - Read Only: Yes
-4. (Optional) Add the membership ID page to your WooCommerce account menu:
+3. (Optional) Add the membership ID page to your WooCommerce account menu:
    - Go to WooCommerce → Settings → Advanced
    - Under "Account endpoints", add:
      - Endpoint: memberid
      - Label: Mitgliedsausweis
-5. (Optional) Add the membership ID page to your menu:
+4. (Optional) Add the membership ID page to your menu:
    - Go to WooCommerce → Appearance → Menus
    - Under "My account page", add:
      - Custom link pointing to `/my-account//memberid`
