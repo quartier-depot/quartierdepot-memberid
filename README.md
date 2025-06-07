@@ -4,9 +4,11 @@ A WordPress plugin that adds shows a `member_id` field as barcode on the url `/m
 The plugin allows users to generate and manage their membership ID, which is displayed as a barcode in their account area.
 
 ![Member ID Page without Barcode](documentation/screen-1.png)
+
 *Member ID page when no barcode is generated yet*
 
 ![Member ID Page with Barcode](documentation/screen-2.png)
+
 *Member ID page showing the generated barcode*
 
 ## Features
