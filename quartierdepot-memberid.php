@@ -3,7 +3,7 @@
  * Plugin Name: Quartierdepot Member ID
  * Plugin URI: https://github.com/quartier-depot/quartierdepot-memberid
  * Description: Displays membership ID in the WooCommerce account area
- * Version: 0.0.1
+ * Version: 0.0.0
  * Author: Quartierdepot
  * Author URI: https://github.com/quartier-depot
  * Requires at least: 5.8

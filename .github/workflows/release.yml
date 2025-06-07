@@ -1,0 +1,33 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - '[0-9]*.[0-9]*.[0-9]*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      - name: Update plugin version
+        run: |
+          sed -i "s/Version: [0-9.]*/Version: ${{ env.VERSION }}/" quartierdepot-memberid.php
+
+      - name: Create ZIP file
+        run: |
+          zip -r quartierdepot-memberid-${{ env.VERSION }}.zip . -x "*.git*" "*.github*"
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: quartierdepot-memberid-${{ env.VERSION }}.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
