@@ -66,3 +66,8 @@ The page allows users to:
 - All actions are protected by WordPress nonces
 - Only logged-in users can access the membership ID functionality
 - Each membership ID is unique across all users
+
+## Release
+
+1. `git tag 0.0.1`
+2. `git push origin --tags`
