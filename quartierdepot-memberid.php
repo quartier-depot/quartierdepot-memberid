@@ -21,6 +21,9 @@ class quartierdepot_memberid {
     public function __construct() {
         // Add endpoint
         add_action('init', array($this, 'add_endpoint'));
+
+        // expose ACF user meta to REST API
+        add_filter('woocommerce_rest_prepare_customer', 'expose_acf_user_meta_to_rest_api', 10, 3);
         
         // Add content
         add_action('woocommerce_account_memberid_endpoint', array($this, 'memberid_endpoint_content'));
@@ -31,7 +34,21 @@ class quartierdepot_memberid {
 
         // Add script enqueue
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
+
+
     }
+
+    /**
+     * Expose ACF user meta to REST API
+     */
+    function expose_acf_user_meta_to_rest_api($response, $user, $request) {
+        $acf_fields = get_fields('user_' . $user->ID); // Get all ACF fields for the user
+        if (!empty($acf_fields)) {
+            $response->data['acf'] = $acf_fields;
+        }
+        return $response;
+    }
+    
 
     /**
      * Add endpoint
