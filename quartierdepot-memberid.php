@@ -23,7 +23,7 @@ class quartierdepot_memberid {
         add_action('init', array($this, 'add_endpoint'));
 
         // expose ACF user meta to REST API
-        add_filter('woocommerce_rest_prepare_customer', 'expose_acf_user_meta_to_rest_api', 10, 3);
+        add_filter('woocommerce_rest_prepare_customer', array($this, 'expose_acf_user_meta_to_rest_api'), 10, 3);
         
         // Add content
         add_action('woocommerce_account_memberid_endpoint', array($this, 'memberid_endpoint_content'));
