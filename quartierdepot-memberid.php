@@ -90,7 +90,7 @@ class quartierdepot_memberid {
         }
 
         // Delete the member ID
-        $result = update_field('member_id', null, 'user_' . $user_id);
+        $result = update_field('member_id', 'OPT-OUT', 'user_' . $user_id);
         error_log('Update field result: ' . ($result ? 'success' : 'failed'));
 
         if ($result) {

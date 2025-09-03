@@ -54,6 +54,12 @@ The plugin allows users to generate and manage their membership ID, which is dis
    - Under "My account page", add:
      - Custom link pointing to `/my-account//memberid`
 
+
+## Development
+
+During development, install the plugin by copying the files to WordPress folder `/app/public/wp-content/plugins/quartierdepot-memberid`.
+For example with `cp -rf . "/Users/usr/Local Sites/quartierdepot-test/app/public/wp-content/plugins/quartierdepot-memberid"`
+
 ## Usage
 
 Once installed and configured, users can access their membership ID through their WooCommerce account area. The URL will be

@@ -13,7 +13,7 @@ $generate_nonce = wp_create_nonce('generate_member_id');
 <div class="woocommerce-MyAccount-content">
     <h2><?php esc_html_e('Mitgliedsausweis', 'qd-memberid'); ?></h2>
     
-    <?php if ($memberid): ?>
+    <?php if ($memberid && $memberid != 'OPT-OUT'): ?>
         <p><?php esc_html_e(
             'Der Mitgliedsausweis ist dein Zahlmittel für die Selbsbedienungskasse im Laden. ',
             'qd-memberid'); ?></p>
@@ -26,7 +26,7 @@ $generate_nonce = wp_create_nonce('generate_member_id');
             <svg id="barcode"></svg>
         </div>
 
-        <!-- <p><button class="button" onclick="deleteMemberID()"><?php esc_html_e('Mitgliedsausweis löschen', 'qd-memberid'); ?></button></p> -->  
+        <p><button class="button" onclick="deleteMemberID()"><?php esc_html_e('Mitgliedsausweis löschen', 'qd-memberid'); ?></button></p> 
 
     <?php else: ?>
         <p><?php esc_html_e(
@@ -37,7 +37,7 @@ $generate_nonce = wp_create_nonce('generate_member_id');
             'Der Mitgliedsausweis ist ein Barcode, welchen du für die Selbsbedienungskasse im Laden benötigst. ',
             'qd-memberid'); ?></p>
 
-        <!-- <p><button class="button" onclick="generateMemberID()"><?php esc_html_e('Mitgliedsausweis erstellen', 'qd-memberid'); ?></button></p> -->
+        <p><button class="button" onclick="generateMemberID()"><?php esc_html_e('Mitgliedsausweis erstellen', 'qd-memberid'); ?></button></p>
 
     <?php endif; ?>
 </div>
