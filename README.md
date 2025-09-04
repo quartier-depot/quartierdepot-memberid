@@ -44,6 +44,13 @@ The plugin allows users to generate and manage their membership ID, which is dis
      - Location Rules: User Form is equal to All
      - Required: No
      - Read Only: Yes
+   - Add a new field with these settings:
+     - Field Label: Passkey ID
+     - Field Name: passkey_id
+     - Field Type: Text
+     - Location Rules: User Form is equal to All
+     - Required: No
+     - Read Only: Yes
 3. (Optional) Add the membership ID page to your WooCommerce account menu:
    - Go to WooCommerce → Settings → Advanced
    - Under "Account endpoints", add:

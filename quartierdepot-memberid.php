@@ -90,13 +90,16 @@ class quartierdepot_memberid {
         }
 
         // Delete the member ID
-        $result = update_field('member_id', 'OPT-OUT', 'user_' . $user_id);
-        error_log('Update field result: ' . ($result ? 'success' : 'failed'));
+        $memberIdResult = update_field('member_id', 'OPT-OUT', 'user_' . $user_id);
+        error_log('Update member_id field result: ' . ($memberIdResult ? 'success' : 'failed'));
+        
+        $passkeyIdResult = update_field('passkey_id', null, 'user_' . $user_id);
+        error_log('Update passkey_id field result: ' . ($passkeyIdResult ? 'success' : 'failed'));
 
-        if ($result) {
-            wp_send_json_success('Member ID deleted successfully');
+        if ($passkeyIdResult && $memberIdResult) {
+            wp_send_json_success('Member ID and passkey ID deleted successfully');
         } else {
-            wp_send_json_error('Failed to delete member ID');
+            wp_send_json_error('Failed to delete member ID or passkey ID');
         }
     }
 
@@ -140,7 +143,7 @@ class quartierdepot_memberid {
 
         // Check if user already has a member ID
         $existing_id = get_field('member_id', 'user_' . $user_id);
-        if ($existing_id) {
+        if ($existing_id && $existing_id != 'OPT-OUT') {
             wp_send_json_error('User already has a member ID');
             return;
         }
