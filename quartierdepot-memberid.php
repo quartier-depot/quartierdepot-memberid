@@ -63,11 +63,13 @@ class quartierdepot_memberid {
     public function memberid_endpoint_content() {
         $user_id = get_current_user_id();
         $memberid = get_field('member_id', 'user_' . $user_id);
+        $passkeyid = get_field('passkey_id', 'user_' . $user_id);
         
         wc_get_template(
             'memberid-screen.php',
             array(
                 'memberid' => $memberid,
+                'passkeyid' => $passkeyid,
                 'user_id' => $user_id
             ),
             'qd-memberid/',

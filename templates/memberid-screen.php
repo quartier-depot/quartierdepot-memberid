@@ -25,6 +25,14 @@ $generate_nonce = wp_create_nonce('generate_member_id');
         <div class="memberid-barcode">
             <svg id="barcode"></svg>
         </div>
+    
+        <?php if ($passkeyid): ?>
+            <p>
+                <a href='https://quartierdepottest.blob.core.windows.net/passes/<?php echo esc_attr($passkeyid); ?>.pkpass'>
+                    <img style='width: 10rem' src="<?php echo plugins_url('assets/DE_Add_to_Apple_Wallet_RGB_101421.svg', dirname(__FILE__)); ?>" />
+                </a>
+            </p>
+        <?php endif; ?>
 
         <p><button class="button" onclick="deleteMemberID()"><?php esc_html_e('Mitgliedsausweis löschen', 'qd-memberid'); ?></button></p> 
 
