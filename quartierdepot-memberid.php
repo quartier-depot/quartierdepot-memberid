@@ -64,13 +64,15 @@ class quartierdepot_memberid {
         $user_id = get_current_user_id();
         $memberid = get_field('member_id', 'user_' . $user_id);
         $passkeyid = get_field('passkey_id', 'user_' . $user_id);
+        $google_wallet_token = get_field('google_wallet_token', 'user_' . $user_id);
         
         wc_get_template(
             'memberid-screen.php',
             array(
                 'memberid' => $memberid,
                 'passkeyid' => $passkeyid,
-                'user_id' => $user_id
+                'user_id' => $user_id,
+                'google_wallet_token' => $google_wallet_token
             ),
             'qd-memberid/',
             plugin_dir_path(__FILE__) . 'templates/'
@@ -97,8 +99,11 @@ class quartierdepot_memberid {
         
         $passkeyIdResult = update_field('passkey_id', null, 'user_' . $user_id);
         error_log('Update passkey_id field result: ' . ($passkeyIdResult ? 'success' : 'failed'));
+        
+        $googleWalletTokenResult = update_field('google_wallet_token', null, 'user_' . $user_id);
+        error_log('Update google_wallet_token field result: ' . ($googleWalletTokenResult ? 'success' : 'failed'));
 
-        if ($passkeyIdResult && $memberIdResult) {
+        if ($passkeyIdResult && $memberIdResult && $googleWalletTokenResult) {
             wp_send_json_success('Member ID and passkey ID deleted successfully');
         } else {
             wp_send_json_error('Failed to delete member ID or passkey ID');
