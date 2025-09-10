@@ -58,13 +58,8 @@ The plugin allows users to generate and manage their membership ID, which is dis
      - Location Rules: User Form is equal to All
      - Required: No
      - Read Only: Yes
-3. (Optional) Add the membership ID page to your WooCommerce account menu:
-   - Go to WooCommerce → Settings → Advanced
-   - Under "Account endpoints", add:
-     - Endpoint: memberid
-     - Label: Mitgliedsausweis
-4. (Optional) Add the membership ID page to your menu:
-   - Go to WooCommerce → Appearance → Menus
+3. (Optional) Add the membership ID page to your menu:
+   - Go to Wordpress → Appearance/Design → Menus
    - Under "My account page", add:
      - Custom link pointing to `/my-account//memberid`
 
