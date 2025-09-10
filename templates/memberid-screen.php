@@ -28,7 +28,7 @@ $generate_nonce = wp_create_nonce('generate_member_id');
     
         <?php if ($passkeyid): ?>
             <p>
-                <a href='https://quartierdepottest.blob.core.windows.net/passes/<?php echo esc_attr($passkeyid); ?>.pkpass' style='text-decoration-line: none'>
+                <a href='https://quartierdepot.blob.core.windows.net/passes/<?php echo esc_attr($passkeyid); ?>.pkpass' style='text-decoration-line: none'>
                     <img style='width: 10rem' src="<?php echo plugins_url('assets/DE_Add_to_Apple_Wallet_RGB_101421.svg', dirname(__FILE__)); ?>" />
                 </a>
             
