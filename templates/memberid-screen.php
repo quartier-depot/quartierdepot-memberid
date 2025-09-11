@@ -28,12 +28,12 @@ $generate_nonce = wp_create_nonce('generate_member_id');
     
         <?php if ($passkeyid): ?>
             <p>
-                <a href='https://quartierdepot.blob.core.windows.net/passes/<?php echo esc_attr($passkeyid); ?>.pkpass' style='text-decoration-line: none'>
+                <a href='https://quartierdepot.blob.core.windows.net/passes/<?php echo esc_attr($passkeyid); ?>.pkpass' style='text-decoration-line: none; background-color: unset'>
                     <img style='width: 10rem' src="<?php echo plugins_url('assets/DE_Add_to_Apple_Wallet_RGB_101421.svg', dirname(__FILE__)); ?>" />
                 </a>
             
                 <?php if ($google_wallet_token): ?>
-                    <a href='https://pay.google.com/gp/v/save/<?php echo esc_attr($google_wallet_token); ?>' style='text-decoration-line: none'>
+                    <a href='https://pay.google.com/gp/v/save/<?php echo esc_attr($google_wallet_token); ?>' style='text-decoration-line: none; background-color: unset'>
                         <img style='width: 10rem' src="<?php echo plugins_url('assets/de_add_to_google_wallet_add-wallet-badge.svg', dirname(__FILE__)); ?>" />
                     </a>
                 <? endif; ?>
