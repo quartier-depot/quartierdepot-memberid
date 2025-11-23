@@ -181,7 +181,7 @@ class quartierdepot_memberid {
             wp_enqueue_script(
                 'jsbarcode',
                 plugins_url('js/JsBarcode.all.min.js', __FILE__),
-                array('jquery'),
+                array(),
                 '3.11.5',
                 true
             );

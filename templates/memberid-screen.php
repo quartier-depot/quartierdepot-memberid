@@ -58,84 +58,90 @@ $generate_nonce = wp_create_nonce('generate_member_id');
 
 <script src="<?php echo plugins_url('js/JsBarcode.all.min.js', dirname(__FILE__)); ?>"></script>
 
-<script>
-    <?php if ($memberid): ?>
-    jQuery(document).ready(function($) {
-        JsBarcode("#barcode", "<?php echo esc_js($memberid); ?>", {
-            format: "CODE128",
-            width: 3,
-            height: 120,
-            displayValue: true
+    <script>
+        <?php if ($memberid): ?>
+        document.addEventListener('DOMContentLoaded', function() {
+            JsBarcode("#barcode", "<?php echo esc_js($memberid); ?>", {
+                format: "CODE128",
+                width: 3,
+                height: 120,
+                displayValue: true
+            });
         });
-    });
-    <?php endif; ?>
+        <?php endif; ?>
 
-    function deleteMemberID() {
-        if (!confirm('<?php esc_html_e('Bist du sicher, dass du deinen Mitgliedsausweis löschen möchtest?', 'qd-memberid'); ?>')) {
-            return;
-        }
+        function deleteMemberID() {
+            if (!confirm('<?php esc_html_e('Bist du sicher, dass du deinen Mitgliedsausweis löschen möchtest?', 'qd-memberid'); ?>')) {
+                return;
+            }
 
-        const button = document.querySelector('button[onclick="deleteMemberID()"]');
-        button.disabled = true;
-        button.textContent = '<?php esc_html_e('Wird gelöscht...', 'qd-memberid'); ?>';
+            const button = document.querySelector('button[onclick="deleteMemberID()"]');
+            button.disabled = true;
+            button.textContent = '<?php esc_html_e('Wird gelöscht...', 'qd-memberid'); ?>';
 
-        jQuery.ajax({
-            url: '<?php echo admin_url('admin-ajax.php'); ?>',
-            type: 'POST',
-            data: {
-                action: 'delete_member_id',
-                nonce: '<?php echo $delete_nonce; ?>'
-            },
-            success: function(response) {
-                if (response.success) {
+            fetch('<?php echo admin_url('admin-ajax.php'); ?>', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    action: 'delete_member_id',
+                    nonce: '<?php echo $delete_nonce; ?>'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
                     window.location.reload();
                 } else {
                     alert('<?php esc_html_e('Fehler beim Löschen des Mitgliedsausweises.', 'qd-memberid'); ?>');
                     button.disabled = false;
                     button.textContent = '<?php esc_html_e('Mitgliedsausweis löschen', 'qd-memberid'); ?>';
                 }
-            },
-            error: function() {
+            })
+            .catch(() => {
                 alert('<?php esc_html_e('Fehler beim Löschen des Mitgliedsausweises.', 'qd-memberid'); ?>');
                 button.disabled = false;
                 button.textContent = '<?php esc_html_e('Mitgliedsausweis löschen', 'qd-memberid'); ?>';
-            }
-        });
-    }
-
-    function generateMemberID() {
-        if (!confirm('<?php esc_html_e('Möchtest du einen neuen Mitgliedsausweis erstellen?', 'qd-memberid'); ?>')) {
-            return;
+            });
         }
 
-        const button = document.querySelector('button[onclick="generateMemberID()"]');
-        button.disabled = true;
-        button.textContent = '<?php esc_html_e('Wird erstellt...', 'qd-memberid'); ?>';
+        function generateMemberID() {
+            if (!confirm('<?php esc_html_e('Möchtest du einen neuen Mitgliedsausweis erstellen?', 'qd-memberid'); ?>')) {
+                return;
+            }
 
-        jQuery.ajax({
-            url: '<?php echo admin_url('admin-ajax.php'); ?>',
-            type: 'POST',
-            data: { 
-                action: 'generate_member_id',
-                nonce: '<?php echo $generate_nonce; ?>'
-            },
-            success: function(response) {
-                if (response.success) {
+            const button = document.querySelector('button[onclick="generateMemberID()"]');
+            button.disabled = true;
+            button.textContent = '<?php esc_html_e('Wird erstellt...', 'qd-memberid'); ?>';
+
+            fetch('<?php echo admin_url('admin-ajax.php'); ?>', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    action: 'generate_member_id',
+                    nonce: '<?php echo $generate_nonce; ?>'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
                     window.location.reload();
                 } else {
-                    alert(response.data || '<?php esc_html_e('Fehler beim Erstellen des Mitgliedsausweises.', 'qd-memberid'); ?>');
+                    alert(data.data || '<?php esc_html_e('Fehler beim Erstellen des Mitgliedsausweises.', 'qd-memberid'); ?>');
                     button.disabled = false;
                     button.textContent = '<?php esc_html_e('Mitgliedsausweis erstellen', 'qd-memberid'); ?>';
                 }
-            },
-            error: function() {
+            })
+            .catch(() => {
                 alert('<?php esc_html_e('Fehler beim Erstellen des Mitgliedsausweises.', 'qd-memberid'); ?>');
                 button.disabled = false;
                 button.textContent = '<?php esc_html_e('Mitgliedsausweis erstellen', 'qd-memberid'); ?>';
-            }
-        });
-    }
-</script>
+            });
+        }
+    </script>
 
 <style>
 .memberid-barcode {
