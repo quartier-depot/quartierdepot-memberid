@@ -89,3 +89,13 @@ The page allows users to:
 
 1. `git tag 0.0.1`
 2. `git push origin --tags`
+
+## Update
+
+After releasing:
+
+1. Download `*.zip` from [GitHub](https://github.com/quartier-depot/quartierdepot-memberid/releases/)
+2. [Add Plugin](https://webshop.quartier-depot.ch/wp-admin/plugin-install.php)
+3. Deactivate old version
+4. Activate new version
+5. Delete old version
